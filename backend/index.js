@@ -5,7 +5,17 @@ require("dotenv").config();
 const { userRouter } = require("./routes/users.routes")
 
 app.use(express.json());
-app.use("/users",userRouter)
+app.use("/users",userRouter);
+
+
+app.get("/", async(req,res) => {
+
+    try{
+        res.send("HOME PAGE")
+    }catch(err){
+        res.send({"msg":"something went wrong","error":err.message})
+    }
+})
 
 
 app.listen(process.env.port, async ()=>{
